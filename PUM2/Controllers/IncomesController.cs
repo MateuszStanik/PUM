@@ -49,7 +49,7 @@ namespace PUM2.Controllers
         public IHttpActionResult Post(Income incomes)
         {
             Incomes _incomes = new Incomes();
-            _incomes.createdDate = incomes.createdDate;
+            _incomes.createdDate = DateTime.Now;
             _incomes.date = incomes.date;
             _incomes.description = incomes.description;
             _incomes.repeatValue = incomes.repeatValue;
