@@ -18,40 +18,50 @@ namespace PUM2.Controllers
         [HttpGet]
         public IHttpActionResult getLastActions()
         {
-            var db_object = db.incomes.ToList().OrderByDescending(x => x.createdDate).Take(5);
-
-           
-            return Ok(db_object);
+            //var db_object = db.incomes.ToList().OrderByDescending(x => x.createdDate).Take(5);
+            //DbOperation model = new DbOperation();
+            //model.id = 1;
+            //model.table = "incomes";
+            //List<DbOperation> tmp;
+            //tmp = IncreaseTransactionCounter(model);
+            //return Ok(db_object);
+            var session = HttpContext.Current.Session;
+            if (session["actions"] != null)
+            {
+                List<DbOperation> listOfOperations;
+                listOfOperations = (List<DbOperation>)session["actions"];
+                listOfOperations.OrderByDescending(x => x.id).Take(5);
+                return Ok(listOfOperations);
+            }
+            return BadRequest("Nie znaleziono aktywnosci podczas tej sesji");
         }
  
-        public string IncreaseTransactionCounter()
+        public List<DbOperation> IncreaseTransactionCounter(DbOperation model)
         {
             var session = HttpContext.Current.Session;
+            List<DbOperation> listOfOperations;
 
             if (session["actions"] == null)
-                session["actions"] = "1";
+            {
+                listOfOperations = new List<DbOperation>();
+            }
             else
             {
-                int x;
-                var tmp = session["actions"].ToString();
-                Int32.TryParse(tmp, out x);
-                x++;
-                session["actions"] = x.ToString();
+                listOfOperations = (List<DbOperation>)session["actions"];   
             }
-
-            return session["actions"].ToString();
-
+            listOfOperations.Add(model);
+            session["actions"] = listOfOperations;
+            return (List <DbOperation>)session["actions"];
         }
 
         [AllowAnonymous]
         [HttpGet]
-        public string Get()
+        public IHttpActionResult Get()
         {
-            var session = HttpContext.Current.Session;
-            
-                if (session["username"] == null)
-                    session["username"] = "sesja: " + DateTime.Now.ToString();
-                return session["username"].ToString();
+            var session = HttpContext.Current.Session;            
+            if (session["username"] == null)
+                session["username"] = "Sesja: " + DateTime.Now.ToString();
+            return Ok(session["username"]);
           
         }
     }
