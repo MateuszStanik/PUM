@@ -62,6 +62,11 @@ namespace PUM2.Controllers
             db.expenses.Add(_expense);
             db.SaveChanges();
 
+            DbOperation model = new DbOperation();
+            model.id = _expense.id;
+            model.table = "expanse";
+            GeneralController.IncreaseTransactionCounter(model);
+
             return Ok(_expense);
         }
 
@@ -80,6 +85,11 @@ namespace PUM2.Controllers
 
             db.expenses.Remove(_expense);
             db.SaveChanges();
+
+            DbOperation model = new DbOperation();
+            model.id = id;
+            model.table = "expanse";
+            GeneralController.IncreaseTransactionCounter(model);
 
             return Ok(_expense);
         }

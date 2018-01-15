@@ -61,7 +61,10 @@ namespace PUM2.Controllers
 
             db.incomes.Add(_incomes);
             db.SaveChanges();
-
+            DbOperation model = new DbOperation();
+            model.id = _incomes.id;
+            model.table = "income";
+            GeneralController.IncreaseTransactionCounter(model);
             return Ok(incomes);
         }
 
@@ -80,6 +83,11 @@ namespace PUM2.Controllers
 
             db.incomes.Remove(_income);
             db.SaveChanges();
+
+            DbOperation model = new DbOperation();
+            model.id = id;
+            model.table = "income";
+            GeneralController.IncreaseTransactionCounter(model);
             return Ok(_income);
         }
     

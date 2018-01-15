@@ -195,6 +195,7 @@
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\Income.cs" />
     <Compile Include="Models\Saving.cs" />
+    <Compile Include="Models\TransactionStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

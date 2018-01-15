@@ -58,7 +58,10 @@ namespace PUM2.Controllers
 
             db.savings.Add(_saving);
             db.SaveChanges();
-
+            DbOperation model = new DbOperation();
+            model.id = _saving.id;
+            model.table = "saving";
+            GeneralController.IncreaseTransactionCounter(model);
             return Ok(_saving);
         }
 
@@ -77,6 +80,12 @@ namespace PUM2.Controllers
 
             db.savings.Remove(_saving);
             db.SaveChanges();
+
+            DbOperation model = new DbOperation();
+            model.id = id;
+            model.table = "saving";
+            GeneralController.IncreaseTransactionCounter(model);
+
             return Ok(_saving);
         }
 
