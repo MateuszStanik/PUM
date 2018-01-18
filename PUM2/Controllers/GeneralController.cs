@@ -229,8 +229,9 @@ namespace PUM2.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            var session = HttpContext.Current.Session;            
+            var session = HttpContext.Current.Session;
             if (session["username"] == null)
+                //session.Timeout = 500;
                 session["username"] = "Sesja: " + DateTime.Now.ToString();
             return Ok(session["username"]);
           
