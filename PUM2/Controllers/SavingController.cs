@@ -89,5 +89,18 @@ namespace PUM2.Controllers
             return Ok(_saving);
         }
 
+
+        [HttpGet]
+        public IHttpActionResult clearAllData()
+        {
+            var query = db.savings.ToList();
+
+            foreach (var q in query)
+            {
+                db.savings.Remove(q);
+            }
+            db.SaveChanges();
+            return Ok("Usunięto dane z tabeli");
+        }
     }
 }

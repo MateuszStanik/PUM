@@ -90,6 +90,18 @@ namespace PUM2.Controllers
             GeneralController.IncreaseTransactionCounter(model);
             return Ok(_income);
         }
-    
+
+        [HttpGet]
+        public IHttpActionResult clearAllData()
+        {
+            var query = db.incomes.ToList();
+
+            foreach (var q in query)
+            {
+                db.incomes.Remove(q);
+            }
+            db.SaveChanges();
+            return Ok("Usunięto dane z tabeli");
+        }
     }
 }

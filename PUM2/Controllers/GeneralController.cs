@@ -57,8 +57,20 @@ namespace PUM2.Controllers
                 }
 
                 TS.incomeInputAvg = sumOfIncomes / counterIncomes;
+                if (Double.IsNaN(TS.incomeInputAvg))
+                {
+                    TS.incomeInputAvg = 0.0;
+                }
                 TS.expenseInputAvg = sumOfExpanses / counterExpanses;
+                if (Double.IsNaN(TS.expenseInputAvg))
+                {
+                    TS.expenseInputAvg = 0.0;
+                }
                 TS.savingAvg = sumOfSavings / counterSavings;
+                if (Double.IsNaN(TS.savingAvg))
+                {
+                    TS.savingAvg = 0.0;
+                }
                 TS.year = year;
                 TS.month = month;
                 TS.day = 0;
@@ -93,8 +105,20 @@ namespace PUM2.Controllers
                 }
 
                 TS.incomeInputAvg = sumOfIncomes / counterIncomes;
+                if(Double.IsNaN(TS.incomeInputAvg))
+                {
+                    TS.incomeInputAvg = 0.0;
+                }
                 TS.expenseInputAvg = sumOfExpanses / counterExpanses;
+                if (Double.IsNaN(TS.expenseInputAvg))
+                {
+                    TS.expenseInputAvg = 0.0;
+                }
                 TS.savingAvg = sumOfSavings / counterSavings;
+                if (Double.IsNaN(TS.savingAvg))
+                {
+                    TS.savingAvg = 0.0;
+                }
                 TS.year = year;
                 TS.month = 0;
                 TS.day = 0;
@@ -142,8 +166,20 @@ namespace PUM2.Controllers
                 }
 
                 TS.incomeInputAvg = sumOfIncomes / counterIncomes;
+                if (Double.IsNaN(TS.incomeInputAvg))
+                {
+                    TS.incomeInputAvg = 0.0;
+                }
                 TS.expenseInputAvg = sumOfExpanses / counterExpanses;
+                if (Double.IsNaN(TS.expenseInputAvg))
+                {
+                    TS.expenseInputAvg = 0.0;
+                }
                 TS.savingAvg = sumOfSavings / counterSavings;
+                if (Double.IsNaN(TS.savingAvg))
+                {
+                    TS.savingAvg = 0.0;
+                }
                 TS.year = date.Year;
                 TS.month = month;
                 TS.day = day;
